@@ -1,0 +1,26 @@
+workflows:
+  ios-workflow:
+    name: iOS Build
+    environment:
+      vars:
+        XCODE_WORKSPACE: "iosApp.xcworkspace"
+        XCODE_SCHEME: "iosApp"
+        BUNDLE_ID: "com.yourcompany.yourapp"
+    scripts:
+      - name: Install CocoaPods
+        script: |
+          cd iosApp
+          pod install
+      - name: Build iOS
+        script: |
+          xcodebuild build \
+            -workspace "$XCODE_WORKSPACE" \
+            -scheme "$XCODE_SCHEME" \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            DSTROOT=build/Release \
+            OBJROOT=build/Release \
+            SYMROOT=build/Release \
+            ONLY_ACTIVE_ARCH=NO
+    artifacts:
+      - build/Release/**/*.app
