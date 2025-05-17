@@ -16,7 +16,7 @@ actual class DatabaseFactory {
             name = dbFile
         )
     }
-
+  ///testgit config --global --add safe.directory 'C:/Users/hp/New folder'
     private fun documentDirectory(): String {
         val documentDirectory = NSFileManager.defaultManager.URLForDirectory(
             directory = NSDocumentDirectory,
